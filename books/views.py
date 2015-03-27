@@ -28,7 +28,7 @@ def search_info(request):
 
 def search(request):
     if 'q' in request.GET and request.GET['q']:
-        books = Book.objects.filter(title='python')
+        books = Book.objects.filter(title__icontains='p')
         q = request.GET['q']
         return render_to_response('search_result.html', {'books': books, 'query': q})
     else:
