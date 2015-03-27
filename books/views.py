@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render_to_response
 from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse
@@ -19,3 +19,15 @@ def display_meta(request):
     html = t.render(Context({'info': values}))
 
     return HttpResponse(html)
+
+
+def search_info(request):
+    return render_to_response('search.html')
+
+
+def search(request):
+    if 'q' in request.GET:
+        mess = 'yes'
+    else:
+        mess = 'no'
+    return HttpResponse(mess)
