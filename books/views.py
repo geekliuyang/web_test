@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response
 from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse
+from books.models import Book
 
 
 def hello(request):
@@ -26,8 +27,10 @@ def search_info(request):
 
 
 def search(request):
-    if 'q' in request.GET:
-        mess = 'yes'
+    if 'q' in request.GET and request.GET['q']:
+        books = Book.objects.filter(title='python')
+        q = request.GET['q']
+        return render_to_response('search_result.html', {'books': books, 'query': q})
     else:
         mess = 'no'
     return HttpResponse(mess)
