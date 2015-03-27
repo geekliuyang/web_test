@@ -12,7 +12,10 @@ def hello(request):
 
 
 def display_meta(request):
+    values = request.META.items()
+    values.sort()
+
     t = get_template('meta.html')
-    html = t.render(Context({'word': 'good bye'}))
+    html = t.render(Context({'info': values}))
 
     return HttpResponse(html)
