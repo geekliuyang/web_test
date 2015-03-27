@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p>your query is {{ query }} </p>
+    {% if books %}
+        <table>
+            <tr>
+                {% for each in books %}
+                    <td>
+                        {{ each }}
+                    </td>
+                {% endfor %}
+            </tr>
+        </table>
+    {% endif %}
+</body>
+</html>
