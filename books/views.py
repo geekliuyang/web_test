@@ -9,3 +9,10 @@ def hello(request):
     html = t.render(Context())
 
     return HttpResponse(html)
+
+
+def display_meta(request):
+    t = get_template('meta.html')
+    html = t.render(Context({'word': 'good bye'}))
+
+    return HttpResponse(html)
