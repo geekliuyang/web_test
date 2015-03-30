@@ -14,7 +14,7 @@ def contact(request):
         form = ContactForms(request.POST)
 
         if form.is_valid():
-            data = form.cleaned_data           #cleaned_data必须在is_valid()之后调用
+            data = form.cleaned_data
             send_mail(data['subject'],
                       data['content'],
                       data['email'],
@@ -22,7 +22,7 @@ def contact(request):
 
             return HttpResponseRedirect('/contact/thanks')
     else:
-        form = ContactForms()
+        form = ContactForms(initial={'subject': 'this is a inital status'})
 
     return render_to_response('contact.html', {'form': form}, context_instance=RequestContext(request))
 
