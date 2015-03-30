@@ -14,7 +14,7 @@ def contact(request):
         form = ContactForms(request.POST)
 
         if form.is_valid():
-            data = form.cleaned_data
+            data = form.cleaned_data           #cleaned_data必须在is_valid()之后调用
             send_mail(data['subject'],
                       data['content'],
                       data['email'],
