@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> contact us</title>
+</head>
+<body>
+    <h1>Contact US</h1>
+    {% if errors %}
+        <ul style="list-style: none">
+            {% for each in errors %}
+                <li style=" color: red">{{ each }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="post" action="">
+        {% csrf_token %}
+        <p>Subject: <input type="text" name="subject" value="{{ sub }}"> </input> </p>
+        <p>Email: <input type="text" name="email" value="{{ ema }}"> </input> </p>
+        <p>Content:<textarea name="content" rows="10" cols="50">{{ textarea }}</textarea></p>
+        <input type="submit" value="sumbit"> </input>
+    </form>
+</body>
+</html>

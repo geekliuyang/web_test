@@ -90,3 +90,9 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
 )
+
+EMAIL_HOST= 'smtp.163.com'
+EMAIL_PORT= 25
+EMAIL_HOST_USER = 'liuyangxuexin@163.com'
+EMAIL_HOST_PASSWORD = 'win3213778000762'
+EMAIL_USE_TLS = True
