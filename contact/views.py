@@ -6,31 +6,25 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
+from contact.form import ContactForms
 
 
 def contact(request):
-    error = []
-
     if request.method == 'POST':
-        if not request.POST.get('subject', ''):
-            error.append('subject is empty')
-        elif not request.POST.get('email', ''):
-            error.append("email is empty")
-        elif not request.POST.get('content', ''):
-            error.append('textarea is empty')
+        form = ContactForms(request.POST)
 
-        if not error:
-            send_mail(request.POST['subject'],
-                      request.POST['content'],
-                      request.POST['email'],
-                      ['497384230@qq.com'])
+        if form.is_valid():
+            data = form.cleaned_data
+            send_mail(data['subject'],
+                      data['content'],
+                      data['email'],
+                      ['lj_6262@163.com'])
 
             return HttpResponseRedirect('/contact/thanks')
+    else:
+        form = ContactForms()
 
-    return render_to_response('contact.html', {'errors': error, 'subject': request.POST.get('subject', ''),
-                                               'email': request.POST.get('email', ''),
-                                               'textarea': request.POST.get('content', ''),
-                                               }, context_instance=RequestContext(request))
+    return render_to_response('contact.html', {'form': form}, context_instance=RequestContext(request))
 
 
 def thank(request):
