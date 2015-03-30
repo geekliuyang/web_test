@@ -4,7 +4,7 @@ from django import forms
 
 class ContactForms(forms.Form):
     subject = forms.CharField()
-    email = forms.EmailField()
+    email = forms.EmailField(label='e-mail')
     content = forms.CharField(widget=forms.Textarea)
 
     def clean_content(self):
